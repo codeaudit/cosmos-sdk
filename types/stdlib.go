@@ -3,12 +3,8 @@ package types
 import (
 	"errors"
 
-	wire "github.com/tendermint/go-wire"
+	wire "github.com/cosmos/cosmos-sdk/wire"
 )
-
-func RegisterWireStdlib(cdc *wire.Codec) {
-	cdc.RegisterConcrete(queueInfo{}, "com.cosmos.sdk.queueinfo", nil)
-}
 
 type ListMapper interface { // Solidity list like structure
 	Len(Context) int64
