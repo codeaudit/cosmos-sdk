@@ -5,11 +5,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	dbm "github.com/tendermint/tmlibs/db"
-
 	abci "github.com/tendermint/abci/types"
-
 	wire "github.com/tendermint/go-wire"
+	dbm "github.com/tendermint/tmlibs/db"
 
 	"github.com/cosmos/cosmos-sdk/store"
 	sdk "github.com/cosmos/cosmos-sdk/types"
