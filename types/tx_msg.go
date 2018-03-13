@@ -80,6 +80,7 @@ type StdSignDoc struct {
 	AltBytes  []byte  `json:"alt_bytes"` // TODO: do we really want this ?
 }
 
+// get the sign bytes for the standard signature
 func StdSignBytes(chainID string, sequences []int64, msg Msg) []byte {
 	bz, err := json.Marshal(StdSignDoc{
 		ChainID:   chainID,
