@@ -7,7 +7,7 @@ import (
 )
 
 func RegisterWireStdlib(cdc *wire.Codec) {
-	cdc.RegisterConcrete(queueInfo{}, "com.cosmos.queueinfo", nil)
+	cdc.RegisterConcrete(queueInfo{}, "com.cosmos.sdk.queueinfo", nil)
 }
 
 type ListMapper interface { // Solidity list like structure
@@ -203,10 +203,12 @@ func (qm queueMapper) Iterate(ctx Context, ptr interface{}, fn func(Context) boo
 
 	var i int64
 	for i = info.Begin; i < info.End; i++ {
-		bz := store.Get(marshalInt64(qm.cdc, i))
+		key := marshalInt64(qm.cdc, i)
+		bz := store.Get(key)
 		if err := qm.cdc.UnmarshalBinary(bz, ptr); err != nil {
 			panic(err)
 		}
+		store.Delete(key)
 		if fn(ctx) {
 			break
 		}
